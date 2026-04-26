@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: transparent;
+      color: var(--color-text-primary);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    .hero {
+      border-left: 3px solid #D85A30;
+      padding: 1.5rem 1.5rem;
+      margin-bottom: 2.5rem;
+      background: var(--color-background-secondary);
+      border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+    }
+
+    .hero-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: #D85A30;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--color-text-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 0.5px solid var(--color-border-tertiary);
+    }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: #D85A30;
+      min-width: 24px;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+    }
+
+    .card {
+      background: var(--color-background-primary);
+      border: 0.5px solid var(--color-border-tertiary);
+      border-radius: var(--border-radius-lg);
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .card p,
+    .card li {
+      font-size: 13.5px;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    .card ul {
+      padding-left: 1.1rem;
+    }
+
+    .card li {
+      margin-bottom: 3px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .badge-priority {
+      background: #FAECE7;
+      color: #993C1D;
+    }
+
+    .badge-secondary {
+      background: var(--color-background-secondary);
+      color: var(--color-text-secondary);
+    }
+
+    .badge-green {
+      background: #EAF3DE;
+      color: #3B6D11;
+    }
+
+    .badge-blue {
+      background: #E6F1FB;
+      color: #185FA5;
+    }
+
+    .badge-amber {
+      background: #FAEEDA;
+      color: #854F0B;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .platform-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 1rem 1.25rem;
+      background: var(--color-background-primary);
+      border: 0.5px solid var(--color-border-tertiary);
+      border-radius: var(--border-radius-lg);
+      margin-bottom: 0.75rem;
+    }
+
+    .platform-icon {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: #D85A30;
+      min-width: 80px;
+      padding-top: 2px;
+    }
+
+    .platform-content {
+      flex: 1;
+    }
+
+    .platform-content strong {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .platform-content p {
+      font-size: 12.5px;
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    .format-block {
+      border-left: 2px solid var(--color-border-tertiary);
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.6rem;
+      background: var(--color-background-secondary);
+      border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    }
+
+    .format-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: 3px;
+    }
+
+    .format-desc {
+      font-size: 12.5px;
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    .example-block {
+      background: var(--color-background-secondary);
+      border-radius: var(--border-radius-lg);
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 0.75rem;
+      border-left: 2px solid #D85A30;
+    }
+
+    .example-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: #D85A30;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+
+    .example-text {
+      font-size: 13px;
+      color: var(--color-text-primary);
+      line-height: 1.65;
+    }
+
+    .example-text em {
+      color: var(--color-text-secondary);
+      font-style: italic;
+    }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+
+    .cal-card {
+      background: var(--color-background-primary);
+      border: 0.5px solid var(--color-border-tertiary);
+      border-radius: var(--border-radius-lg);
+      padding: 0.85rem 1rem;
+      text-align: center;
+    }
+
+    .cal-platform {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: #D85A30;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .cal-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--color-text-primary);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .cal-label {
+      font-size: 11px;
+      color: var(--color-text-secondary);
+    }
+
+    .topic-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 0.75rem 0;
+      border-bottom: 0.5px solid var(--color-border-tertiary);
+    }
+
+    .topic-item:last-child {
+      border-bottom: none;
+    }
+
+    .topic-pain {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--color-text-secondary);
+      min-width: 80px;
+      padding-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .topic-angle {
+      font-size: 13.5px;
+      color: var(--color-text-primary);
+      flex: 1;
+      line-height: 1.5;
+    }
+
+    .profile-block {
+      background: var(--color-background-primary);
+      border: 0.5px solid var(--color-border-tertiary);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+    }
+
+    .profile-header {
+      background: var(--color-background-secondary);
+      padding: 0.6rem 1.25rem;
+      border-bottom: 0.5px solid var(--color-border-tertiary);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: #D85A30;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .profile-content {
+      padding: 1rem 1.25rem;
+    }
+
+    .profile-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 0.6rem;
+    }
+
+    .profile-key {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      min-width: 90px;
+      padding-top: 1px;
+    }
+
+    .profile-val {
+      font-size: 13px;
+      color: var(--color-text-primary);
+      flex: 1;
+      line-height: 1.5;
+    }
+
+    .final-reco {
+      background: var(--color-background-secondary);
+      border-radius: var(--border-radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 0.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-reco::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #D85A30;
+    }
+
+    .final-reco p {
+      font-size: 13.5px;
+      color: var(--color-text-primary);
+      line-height: 1.65;
+    }
+
+    .final-reco strong {
+      font-weight: 500;
+    }
+
+    .nav {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .nav-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 10.5px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 0.5px solid var(--color-border-secondary);
+      background: transparent;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all 0.15s;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: #D85A30;
+      border-color: #D85A30;
+      color: #fff;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .accroche {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      border: 0.5px solid var(--color-border-tertiary);
+      border-radius: var(--border-radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.45;
+    }
+
+    .accroche span {
+      color: #D85A30;
+    }
+
+    .highlight-box {
+      background: #FAECE7;
+      border-radius: var(--border-radius-md);
+      padding: 0.85rem 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .highlight-box p {
+      font-size: 13.5px;
+      color: #713B1E;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 500px) {
+
+      .grid-2,
+      .grid-3,
+      .cal-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="hero">
+      <div class="hero-label">Stratégie complète — Personal Brand & Content</div>
+      <div class="hero-title">Système de contenu pour convertir ton ICP</div>
+      <div class="hero-sub">Marché skincare DTC francophone · Klaviyo · Email retention</div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-btn active" onclick="show('marche')">Marché</button>
+      <button class="nav-btn" onclick="show('position')">Positionnement</button>
+      <button class="nav-btn" onclick="show('formats')">Formats</button>
+      <button class="nav-btn" onclick="show('exemples')">Exemples</button>
+      <button class="nav-btn" onclick="show('cal')">Calendrier</button>
+      <button class="nav-btn" onclick="show('sujets')">Sujets</button>
+      <button class="nav-btn" onclick="show('profils')">Profils</button>
+      <button class="nav-btn" onclick="show('reco')">Recommandations</button>
+    </nav>
+
+    <!-- PARTIE 1 : MARCHÉ -->
+    <section id="marche" class="section active">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <span class="section-title">Analyse marché + plateformes prioritaires</span>
+      </div>
+
+      <div class="accroche">Ton ICP ne cherche pas un <span>prestataire email</span>. Il cherche une sortie de
+        dépendance aux Ads.</div>
+
+      <div class="card">
+        <div class="card-title">Où se trouve réellement ton ICP</div>
+        <p>Le fondateur skincare DTC francophone à 20–150k€/mois est sur LinkedIn (veille business), Instagram (identité
+          de marque), et consomme du contenu YouTube (tutorials, deep dives). Il ne scroll pas TikTok pour acheter des
+          services B2B. Il lit des newsletters, suit des profils d'experts e-com et reagit à la douleur business
+          concrète.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Ce qui attire son attention</div>
+        <ul>
+          <li>Les chiffres concrets : "20% du CA via l'email" vs "stratégie email performante"</li>
+          <li>La démolition de croyances : "les open rates ne signifient rien"</li>
+          <li>Les breakdowns de ce que font les marques qui performent</li>
+          <li>Les erreurs qu'il reconnaît faire sans savoir que c'en sont</li>
+          <li>La clarté : un problème → une cause → une solution</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Ce qui le fait passer à l'action</div>
+        <ul>
+          <li>Voir quelqu'un analyser une marque réelle (pas une marque fictive)</li>
+          <li>Comprendre qu'il perd déjà de l'argent — maintenant, pas demain</li>
+          <li>Un framework qu'il peut appliquer seul mais qui lui montre le gap</li>
+          <li>Une prise de position tranchée sur un sujet qu'il débat intérieurement</li>
+        </ul>
+      </div>
+
+      <div class="section-header" style="margin-top: 2rem;">
+        <span class="section-num">—</span>
+        <span class="section-title">Priorité des plateformes</span>
+      </div>
+
+      <div class="platform-row">
+        <div class="platform-icon">LINKEDIN<br><span class="badge badge-priority"
+            style="margin-top:4px;display:inline-block;">priorité 1</span></div>
+        <div class="platform-content">
+          <strong>Plateforme de conversion principale</strong>
+          <p>Ton ICP B2B est là. C'est l'endroit où la décision d'achat se prend. Le contenu long-form crée l'autorité,
+            les posts courts créent la récurrence. C'est ton centre de gravité. Tu vends un service business → LinkedIn
+            d'abord, toujours.</p>
+        </div>
+      </div>
+
+      <div class="platform-row">
+        <div class="platform-icon">INSTAGRAM<br><span class="badge badge-blue"
+            style="margin-top:4px;display:inline-block;">priorité 2</span></div>
+        <div class="platform-content">
+          <strong>Personal brand + ICP marque skincare</strong>
+          <p>Ton ICP est aussi une marque avec une présence Instagram. Tu dois être là où il aspire à être. C'est le
+            réseau de l'identité. Contenu visuellement clair, thoughts courts, carousels éducatifs. Fonctionne comme un
+            amplificateur de ta brand, pas comme un canal de conversion direct.</p>
+        </div>
+      </div>
+
+      <div class="platform-row">
+        <div class="platform-icon">X (TWITTER)<br><span class="badge badge-blue"
+            style="margin-top:4px;display:inline-block;">priorité 3</span></div>
+        <div class="platform-content">
+          <strong>Distribution d'opinions + construction de crédibilité</strong>
+          <p>L'audience B2B anglophone / francophone y est active. Idéal pour les prises de position courtes, les
+            threads stratégiques, et toucher les profils agence/marque qui amplifient. Faible effort de production, fort
+            potentiel de reach organique si tu tweetes avec conviction.</p>
+        </div>
+      </div>
+
+      <div class="platform-row">
+        <div class="platform-icon">YOUTUBE<br><span class="badge badge-amber"
+            style="margin-top:4px;display:inline-block;">phase 2</span></div>
+        <div class="platform-content">
+          <strong>Preuve par la profondeur</strong>
+          <p>À activer dès que tu as 3–4 audits ou analyses solides. Une vidéo YouTube de 12 minutes sur "pourquoi ta
+            délivrabilité Klaviyo est cassée" te positionne comme l'expert absolu. Long terme, c'est le canal d'autorité
+            le plus fort — mais pas au démarrage. Commence à 3 mois de LinkedIn/Instagram.</p>
+        </div>
+      </div>
+
+      <div class="platform-row">
+        <div class="platform-icon">TIKTOK<br><span class="badge badge-secondary"
+            style="margin-top:4px;display:inline-block;">non prioritaire</span></div>
+        <div class="platform-content">
+          <strong>Ne vaut pas l'effort pour ton ICP actuel</strong>
+          <p>Ton ICP fondateur skincare B2B n'achète pas des services email en scrolant TikTok. L'audience y est trop
+            jeune, trop éloignée du contexte décisionnel. Si tu as de l'énergie en surplus, recycle tes Reels Instagram.
+            Ne crée pas de contenu natif TikTok — inutile.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTIE 2 : POSITIONNEMENT -->
+    <section id="position" class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <span class="section-title">Positionnement recommandé</span>
+      </div>
+
+      <div class="accroche">Tu n'es pas <span>"un expert email"</span>. Tu es le système de récupération de cash que les
+        marques skincare n'ont pas encore mis en place.</div>
+
+      <div class="highlight-box">
+        <p><strong>Angle central :</strong> "Tu génères du trafic, tu paies des Ads, tu travailles — et tu perds quand
+          même de l'argent parce que ta base email est morte. Je suis là pour récupérer ce que tu laisses sur la table."
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Ce qui te rend mémorisable</div>
+        <ul>
+          <li><strong>L'âge assumé comme force.</strong> 20 ans, étudiant, mais qui parle de délivrabilité comme un ops
+            manager. C'est une arme, pas une faiblesse. Ne le cache pas, capitalise dessus.</li>
+          <li><strong>La précision chirurgicale.</strong> Pas de "stratégie email globale" — tu parles de Klaviyo, de
+            flows spécifiques, de skincare DTC. L'hyper-niche crée l'autorité perçue.</li>
+          <li><strong>La logique avant la preuve.</strong> Tu n'as pas de gros clients. Tu as de la rigueur. Montrer le
+            raisonnement vaut mieux que 10 témoignages vagues.</li>
+          <li><strong>L'esthétique sobre.</strong> Pas de production Netflix. Papier blanc, schéma à la main, voix
+            directe. C'est identifiable et difficile à copier.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Ce qui reste constant sur tous les réseaux</div>
+        <ul>
+          <li>Ton angle : "tu perds déjà de l'argent → je le récupère"</li>
+          <li>Ton vocabulaire : délivrabilité, segmentation, LTV, flows, rétention — jamais "email marketing général"
+          </li>
+          <li>Ton ton : direct, sans flatterie, sans hésitation</li>
+          <li>Ton identité visuelle : épure, noir/blanc, typographie propre — pas de couleurs vives ou de templates
+            génériques</li>
+          <li>Ta conviction : l'email est un système de revenus, pas un canal de communication</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Comment créer de l'autorité sans preuve client</div>
+        <div style="margin-top: 0.5rem;">
+          <div class="format-block">
+            <div class="format-name">Preuve par analyse</div>
+            <div class="format-desc">Audite publiquement des marques skincare réelles (sans les nommer si besoin) :
+              "J'ai analysé 10 comptes Klaviyo de marques à 50k€/mois. Voici ce que j'ai trouvé."</div>
+          </div>
+          <div class="format-block">
+            <div class="format-name">Preuve par logique</div>
+            <div class="format-desc">"Si ta délivrabilité est à 80% et que ta liste fait 5000 contacts, tu n'atteins que
+              4000 personnes. Sur 12 mois, c'est X€ de CA perdu." — Calcul = preuve irréfutable.</div>
+          </div>
+          <div class="format-block">
+            <div class="format-name">Preuve par cohérence</div>
+            <div class="format-desc">Ta façon de structurer tes posts, tes frameworks, tes priorités — tout doit être
+              aligné. La cohérence crée la crédibilité avant même le premier client.</div>
+          </div>
+          <div class="format-block">
+            <div class="format-name">Preuve par breakdown</div>
+            <div class="format-desc">Démonter un welcome flow existant d'une marque connue et montrer pourquoi il est
+              mauvais. C'est du contenu à forte valeur perçue sans avoir de client.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTIE 3 : FORMATS -->
+    <section id="formats" class="section">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <span class="section-title">Formats signature par réseau</span>
+      </div>
+
+      <div class="section-header"
+        style="margin-top: 1.5rem; border-bottom: none; padding-bottom: 0; margin-bottom: 0.75rem;">
+        <span class="section-num">—</span>
+        <span class="section-title">LinkedIn</span>
+      </div>
+
+      <div class="format-block" style="border-left-color: #185FA5;">
+        <div class="format-name">01 — Le Post "Démolition" <span class="badge badge-priority"
+            style="margin-left: 6px;">conviction</span></div>
+        <div class="format-desc">Structure : accroche choc → croyance commune → démontage ligne par ligne → vérité → CTA
+          implicite. Objectif : repositionner l'ICP. Ex : "Les open rates ne mesurent pas ce que tu crois."</div>
+      </div>
+      <div class="format-block" style="border-left-color: #185FA5;">
+        <div class="format-name">02 — Le Post "Calcul Visible" <span class="badge badge-blue"
+            style="margin-left: 6px;">preuve</span></div>
+        <div class="format-desc">Structure : situation réelle → chiffre précis → calcul de perte → montant récupérable →
+          call to reflection. Objectif : montrer la perte concrète. Fonctionne sans client.</div>
+      </div>
+      <div class="format-block" style="border-left-color: #185FA5;">
+        <div class="format-name">03 — Le Post "Miroir ICP" <span class="badge badge-green"
+            style="margin-left: 6px;">miroir</span></div>
+        <div class="format-desc">Structure : décrire la semaine type d'un fondateur skincare avec précision → "c'est
+          peut-être toi" → identification de la racine → implication. Objectif : reconnaissance immédiate.</div>
+      </div>
+      <div class="format-block" style="border-left-color: #185FA5;">
+        <div class="format-name">04 — Le Audit Gratuit Public <span class="badge badge-green"
+            style="margin-left: 6px;">preuve</span></div>
+        <div class="format-desc">Structure : "J'ai audité la stratégie email de [marque/type de marque] → voici ce que
+          j'ai trouvé → voici ce que ça coûte → voici comment fixer". Post long-form ou carousel. Autorité maximale.
+        </div>
+      </div>
+      <div class="format-block" style="border-left-color: #185FA5;">
+        <div class="format-name">05 — La Prise de Position <span class="badge badge-priority"
+            style="margin-left: 6px;">conviction</span></div>
+        <div class="format-desc">1 opinion tranchée. 1 argument. 1 exemple. Pas de nuance. Pas de "ça dépend". Objectif
+          : créer de la réaction, des partages, des commentaires. Ex : "Le design de tes emails ne fait rien pour ton
+          CA."</div>
+      </div>
+
+      <div class="section-header"
+        style="margin-top: 1.5rem; border-bottom: none; padding-bottom: 0; margin-bottom: 0.75rem;">
+        <span class="section-num">—</span>
+        <span class="section-title">Instagram</span>
+      </div>
+
+      <div class="format-block" style="border-left-color: #D85A30;">
+        <div class="format-name">01 — Le Carousel "Framework" <span class="badge badge-blue"
+            style="margin-left: 6px;">preuve</span></div>
+        <div class="format-desc">Slide 1 : accroche chiffrée. Slides 2–6 : étapes du framework REP ou d'une priorité
+          (délivrabilité, segmentation…). Slide 7 : récapitulatif. Slide 8 : CTA. Fond blanc, typographie mono, schémas
+          à la main.</div>
+      </div>
+      <div class="format-block" style="border-left-color: #D85A30;">
+        <div class="format-name">02 — Le Reel "Vérité en 30s" <span class="badge badge-priority"
+            style="margin-left: 6px;">conviction</span></div>
+        <div class="format-desc">Caméra fixe, toi face caméra, aucun cut, aucune musique. 1 idée, livrée directement.
+          "Personne ne te dit que ta liste email perd en valeur chaque mois que tu ne segmentes pas." Court, dense, dur
+          à oublier.</div>
+      </div>
+      <div class="format-block" style="border-left-color: #D85A30;">
+        <div class="format-name">03 — Le Post "Schéma Main" <span class="badge badge-green"
+            style="margin-left: 6px;">preuve</span></div>
+        <div class="format-desc">1 schéma dessiné à la main : funnel email, structure de flow, pyramide de priorités.
+          Photo propre. Caption courte. Objectif : crédibilité visuelle et différenciation esthétique forte.</div>
+      </div>
+      <div class="format-block" style="border-left-color: #D85A30;">
+        <div class="format-name">04 — Le Story "Derrière la méthode" <span class="badge badge-secondary"
+            style="margin-left: 6px;">dream follower</span></div>
+        <div class="format-desc">Stories 3–5 slides : ton processus réel de travail sur un flow, un audit, une analyse.
+          Montrer l'envers du décor sans voix, juste du texte sur l'image. Authentique, rapide à produire.</div>
+      </div>
+
+      <div class="section-header"
+        style="margin-top: 1.5rem; border-bottom: none; padding-bottom: 0; margin-bottom: 0.75rem;">
+        <span class="section-num">—</span>
+        <span class="section-title">X (Twitter)</span>
+      </div>
+
+      <div class="format-block" style="border-left-color: #888780;">
+        <div class="format-name">01 — Le Tweet "1 vérité, 1 phrase" <span class="badge badge-priority"
+            style="margin-left: 6px;">conviction</span></div>
+        <div class="format-desc">Pas de thread. 1 seul tweet. 1 phrase d'opinion tranchée sur l'email, le e-com, le
+          marketing. Objectif : partage maximal. Tweeter 1–2x/jour. Volume + constance = autorité sur X.</div>
+      </div>
+      <div class="format-block" style="border-left-color: #888780;">
+        <div class="format-name">02 — Le Thread "Breakdown" <span class="badge badge-blue"
+            style="margin-left: 6px;">preuve</span></div>
+        <div class="format-desc">Tweet 1 : accroche. Tweets 2–7 : analyse pas-à-pas d'un flow, d'une stratégie, d'une
+          marque. Tweet 8 : synthèse. Tweet 9 : CTA discret. Idéal pour démontrer la profondeur d'analyse.</div>
+      </div>
+      <div class="format-block" style="border-left-color: #888780;">
+        <div class="format-name">03 — Le Reply Stratégique <span class="badge badge-secondary"
+            style="margin-left: 6px;">dream follower</span></div>
+        <div class="format-desc">Répondre aux gros comptes e-com/marketing avec une valeur ajoutée réelle. Pas "super
+          post !" — mais une nuance, un exemple, une contre-vision. C'est la méthode la plus rapide pour se faire
+          remarquer sur X.</div>
+      </div>
+
+      <div class="section-header"
+        style="margin-top: 1.5rem; border-bottom: none; padding-bottom: 0; margin-bottom: 0.75rem;">
+        <span class="section-num">—</span>
+        <span class="section-title">YouTube (phase 2)</span>
+      </div>
+
+      <div class="format-block" style="border-left-color: #3B6D11;">
+        <div class="format-name">01 — Le "Audit Complet" <span class="badge badge-blue"
+            style="margin-left: 6px;">preuve</span></div>
+        <div class="format-desc">10–15 min. Tu analyses une stratégie email d'une marque réelle ou fictive reconstituée.
+          Tu expliques chaque erreur, chaque opportunité manquée. Caméra fixe + tableau/papier pour les schémas. Poids :
+          très élevé.</div>
+      </div>
+      <div class="format-block" style="border-left-color: #3B6D11;">
+        <div class="format-name">02 — Le "Masterclass Mini" <span class="badge badge-green"
+            style="margin-left: 6px;">preuve</span></div>
+        <div class="format-desc">8–12 min. Un seul sujet : "Comment configurer la délivrabilité Klaviyo" / "Comment
+          segmenter ta liste en 3 étapes". Pas de fioriture. Direct. Actionnable. Ça se partage entre fondateurs.</div>
+      </div>
+    </section>
+
+    <!-- PARTIE 4 : EXEMPLES -->
+    <section id="exemples" class="section">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <span class="section-title">Exemples de contenus directement publiables</span>
+      </div>
+
+      <div class="section-header"
+        style="margin-top: 1rem; border-bottom: none; margin-bottom: 0.75rem; padding-bottom: 0;">
+        <span class="section-num">—</span><span class="section-title">LinkedIn</span>
+      </div>
+
+      <div class="example-block">
+        <div class="example-label">Post "Démolition" — LinkedIn</div>
+        <div class="example-text">
+          Les fondateurs skincare mesurent le mauvais indicateur.<br><br>
+          Tout le monde surveille les open rates.<br>
+          Personne ne surveille ce qui se passe après.<br><br>
+          Un open rate à 45% avec une liste non segmentée = du bruit.<br>
+          Un open rate à 28% avec une liste propre et des segments actifs = du cash.<br><br>
+          Ce n'est pas la même chose.<br><br>
+          La performance email ne se mesure pas à l'ouverture.<br>
+          Elle se mesure au revenu par email envoyé (RPE).<br><br>
+          Si tu ne suis pas cette métrique, tu travailles dans l'obscurité.<br><br>
+          <em>→ Combien vaut chaque email que tu envoies, concrètement ?</em>
+        </div>
+      </div>
+
+      <div class="example-block">
+        <div class="example-label">Post "Calcul Visible" — LinkedIn</div>
+        <div class="example-text">
+          Calcul rapide pour les marques skincare à 50k€/mois.<br><br>
+          Tu as 8000 contacts Klaviyo.<br>
+          Ton taux de délivrabilité est à 75% (sans le savoir).<br>
+          Tu n'atteins donc que 6000 personnes à chaque envoi.<br><br>
+          Sur 12 mois : tu as payé Klaviyo pour toucher 2000 personnes que tu n'atteins jamais.<br><br>
+          Si l'email génère en moyenne 25% du CA → sur 600k€/an → 150k€ potentiel email.<br>
+          Avec 25% de contacts non atteints → tu perds 37 500€/an. Chaque année.<br><br>
+          Ce n'est pas une hypothèse.<br>
+          C'est une fuite que la plupart des marques n'ont jamais identifiée.<br><br>
+          <em>La délivrabilité n'est pas une option technique. C'est la première ligne de ton P&L email.</em>
+        </div>
+      </div>
+
+      <div class="example-block">
+        <div class="example-label">Post "Miroir ICP" — LinkedIn</div>
+        <div class="example-text">
+          La semaine type d'un fondateur skincare à 60k€/mois :<br><br>
+          Lundi : nouvelle campagne Meta, ROAS correct.<br>
+          Mardi : réunion agence créa, nouveaux visuels.<br>
+          Mercredi : check du tableau de bord Klaviyo. Open rate à 38%. "Pas mal."<br>
+          Jeudi : relance d'une promo. 2300€ générés. Satisfait.<br>
+          Vendredi : CAC remonté encore. Marges qui compriment.<br><br>
+          Et pendant ce temps :<br>
+          — 4200 contacts n'ont pas reçu de welcome flow complet<br>
+          — 1800 paniers abandonnés non récupérés ce mois<br>
+          — 60% de la liste inactifs depuis 90 jours<br><br>
+          Ce n'est pas un problème de budget.<br>
+          C'est un problème de système.<br><br>
+          <em>La croissance que tu cherches est déjà dans ta base. Tu ne la vois pas encore.</em>
+        </div>
+      </div>
+
+      <div class="section-header"
+        style="margin-top: 1.5rem; border-bottom: none; margin-bottom: 0.75rem; padding-bottom: 0;">
+        <span class="section-num">—</span><span class="section-title">X (Twitter)</span>
+      </div>
+
+      <div class="example-block">
+        <div class="example-label">Tweet "1 vérité" — X</div>
+        <div class="example-text">
+          L'email marketing de la plupart des marques skincare n'est pas sous-performant.<br>
+          Il n'existe tout simplement pas en tant que système.<br><br>
+          Il existe comme activité.<br><br>
+          Ce n'est pas la même chose.
+        </div>
+      </div>
+
+      <div class="example-block">
+        <div class="example-label">Tweet "Prise de position" — X</div>
+        <div class="example-text">
+          Si tu passes plus de temps à choisir la couleur de tes emails qu'à vérifier ta délivrabilité, tu travailles
+          sur le mauvais problème.<br><br>
+          Le design n'a jamais sauvé une liste non segmentée.
+        </div>
+      </div>
+
+      <div class="example-block">
+        <div class="example-label">Thread Breakdown — X</div>
+        <div class="example-text">
+          J'ai décortiqué le welcome flow de 12 marques skincare DTC.<br>
+          Voici ce que toutes ont en commun — et pourquoi ça les coûte cher.<br><br>
+          🧵 Thread :<br><br>
+          1/ Le problème n°1 : l'email de bienvenue arrive 20 minutes après l'inscription.<br>
+          Le pic d'attention est passé. La fenêtre de conversion est fermée.<br>
+          La plupart des plateformes email envoient en "batch". Klaviyo te permet l'envoi en temps réel. Peu
+          l'activent.<br><br>
+          2/ Pas de segmentation dès le début.<br>
+          Tout le monde reçoit le même flow : acheteurs, non-acheteurs, fans, curieux.<br>
+          Résultat : 0 personnalisation, spam reports en hausse, délivrabilité qui baisse.<br><br>
+          3/ Le flow s'arrête à 3 emails.<br>
+          Le meilleur email d'un welcome flow performant se situe souvent à l'email 5 ou 6.<br>
+          Personne n'y arrive parce que le flow ne fait que 3 emails.<br><br>
+          <em>[...continues]</em><br><br>
+          En résumé : le welcome flow n'est pas une formalité.<br>
+          C'est ton meilleur commercial — et la plupart l'envoient en entretien sans préparation.
+        </div>
+      </div>
+
+      <div class="section-header"
+        style="margin-top: 1.5rem; border-bottom: none; margin-bottom: 0.75rem; padding-bottom: 0;">
+        <span class="section-num">—</span><span class="section-title">Instagram</span>
+      </div>
+
+      <div class="example-block">
+        <div class="example-label">Caption Reel "Vérité en 30s" — Instagram</div>
+        <div class="example-text">
+          <em>[Visuel : toi, caméra fixe, fond neutre, pas de cut]</em><br><br>
+          "Si ta marque fait 80k€/mois et que l'email représente moins de 15% de ton CA — tu n'as pas un problème de
+          croissance. Tu as un problème de structure.<br><br>
+          L'argent est déjà dans ta liste. Tu ne sais pas encore comment aller le chercher."<br><br>
+          ——<br>
+          Caption : La rétention email ne s'optimise pas. Elle se construit. Système REP en lien dans la bio.
+        </div>
+      </div>
+
+      <div class="example-block">
+        <div class="example-label">Script YouTube Audit — YouTube</div>
+        <div class="example-text">
+          <em>[Intro — 0:00 à 0:30]</em><br>
+          "Aujourd'hui je vais analyser la stratégie email complète d'une marque skincare qui fait 70k€/mois. Elle
+          utilise Klaviyo depuis 18 mois. Elle a des flows. Elle envoie des campagnes. Et elle laisse probablement 15
+          000€ par mois sur la table. Je vais vous montrer exactement où et pourquoi."<br><br>
+          <em>[Corps — 0:30 à 10:00]</em><br>
+          Analyse de : délivrabilité / structure du welcome flow / segmentation / flows d'abandon / campagnes /
+          fréquence. Avec schémas à la main pour chaque point.<br><br>
+          <em>[Conclusion — 10:00 à 12:00]</em><br>
+          "Voilà ce que j'aurais fait en priorité 1, 2, 3. Ce n'est pas compliqué. C'est une question de méthode. Si tu
+          veux que j'analyse ta propre stratégie, le lien est en description."
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTIE 5 : CALENDRIER -->
+    <section id="cal" class="section">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <span class="section-title">Cadence de publication</span>
+      </div>
+
+      <div class="cal-grid" style="margin-bottom: 1.5rem;">
+        <div class="cal-card">
+          <div class="cal-platform">LinkedIn</div>
+          <div class="cal-num">5</div>
+          <div class="cal-label">posts / semaine</div>
+        </div>
+        <div class="cal-card">
+          <div class="cal-platform">Instagram</div>
+          <div class="cal-num">4</div>
+          <div class="cal-label">posts / semaine</div>
+        </div>
+        <div class="cal-card">
+          <div class="cal-platform">X (Twitter)</div>
+          <div class="cal-num">7–14</div>
+          <div class="cal-label">tweets / semaine</div>
+        </div>
+        <div class="cal-card">
+          <div class="cal-platform">YouTube</div>
+          <div class="cal-num">1</div>
+          <div class="cal-label">vidéo / 2 sem.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Répartition hebdomadaire recommandée</div>
+        <ul>
+          <li><strong>LinkedIn :</strong> Lun / Mar / Mer / Jeu / Ven — 1 post/jour. Mix : 2 opinions, 1 miroir ICP, 1
+            calcul, 1 audit partiel.</li>
+          <li><strong>Instagram :</strong> 1 Reel (Mar ou Jeu), 2 carousels (Lun + Mer), 1 post schéma (Ven). Stories
+            quotidiennes si tu as 5 min.</li>
+          <li><strong>X :</strong> 1–2 tweets/jour. 1 thread/semaine (préférence Mer). Replies quotidiens sur 3–5 gros
+            comptes.</li>
+          <li><strong>YouTube :</strong> 1 vidéo toutes les 2 semaines minimum, idéalement 1/semaine quand le rythme est
+            installé.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Principe de recyclage — 1 idée = 4 formats</div>
+        <p>Chaque concept fort produit sur LinkedIn → transformé en carousel Instagram → décliné en thread X → condensé
+          en Reel 30s. Tu ne recrées pas du contenu, tu le reformate. C'est comme ça que tu maintiens la cadence sans
+          t'épuiser.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Ordre de production recommandé</div>
+        <ul>
+          <li>1. Écris le post LinkedIn (le plus profond)</li>
+          <li>2. Extrais les 5 points → carousel Instagram</li>
+          <li>3. Réduis à 1 insight fort → tweet X</li>
+          <li>4. Tourne le Reel à partir de la même idée</li>
+          <li>5. Si le sujet est dense → article YouTube ou thread X long</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PARTIE 6 : SUJETS -->
+    <section id="sujets" class="section">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <span class="section-title">Sujets à forte demande psychologique</span>
+      </div>
+
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="card-title">Peur silencieuse → Angle de contenu</div>
+        <div class="topic-item">
+          <span class="topic-pain">Peur #1</span>
+          <span class="topic-angle">"Je travaille beaucoup mais je stagne" → <em>Angle :</em> "La stagnation n'est pas
+            un manque d'effort. C'est un manque de système. Voici la différence concrète."</span>
+        </div>
+        <div class="topic-item">
+          <span class="topic-pain">Peur #2</span>
+          <span class="topic-angle">"Je dépense en Ads et mes marges baissent" → <em>Angle :</em> "Tu optimises le
+            mauvais canal. Le problème n'est pas ton ROAS. C'est ton LTV."</span>
+        </div>
+        <div class="topic-item">
+          <span class="topic-pain">Peur #3</span>
+          <span class="topic-angle">"J'ai peur de mal déléguer et de perdre le contrôle" → <em>Angle :</em> "Un
+            prestataire email qui ne te montre pas ses priorités dans l'ordre — fuis."</span>
+        </div>
+        <div class="topic-item">
+          <span class="topic-pain">Peur #4</span>
+          <span class="topic-angle">"Je ne suis pas sûr que l'email peut vraiment générer autant" → <em>Angle :</em>
+            "Calcul réel : si tu as 5000 contacts actifs et un RPE de 0.12€, tu génères 600€ par envoi. 8 envois/mois =
+            4800€. C'est le plancher."</span>
+        </div>
+        <div class="topic-item">
+          <span class="topic-pain">Peur #5</span>
+          <span class="topic-angle">"Je ne sais pas à qui faire confiance" → <em>Angle :</em> "Voici 5 questions à poser
+            à n'importe quel expert email avant de signer."</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Croyances erronées → Sujets à démolir</div>
+        <div class="topic-item">
+          <span class="topic-pain">Croyance</span>
+          <span class="topic-angle">"Un beau design email convertit mieux" → Faux. La délivrabilité prime. Un email en
+            texte brut bien délivré bat un HTML complexe non reçu.</span>
+        </div>
+        <div class="topic-item">
+          <span class="topic-pain">Croyance</span>
+          <span class="topic-angle">"J'ai un bon open rate donc ma stratégie fonctionne" → L'open rate mesure les
+            ouvertures, pas les conversions, pas la délivrabilité réelle, pas la valeur.</span>
+        </div>
+        <div class="topic-item">
+          <span class="topic-pain">Croyance</span>
+          <span class="topic-angle">"Envoyer plus d'emails = spam" → Faux si bien segmenté. Envoyer moins mais à tout le
+            monde = pire résultat.</span>
+        </div>
+        <div class="topic-item">
+          <span class="topic-pain">Croyance</span>
+          <span class="topic-angle">"Mon agence gère Klaviyo, donc c'est géré" → La plupart des agences activent les
+            flows de base et s'arrêtent là. La délivrabilité n'est jamais dans le scope.</span>
+        </div>
+        <div class="topic-item">
+          <span class="topic-pain">Croyance</span>
+          <span class="topic-angle">"L'email c'est pour les grandes marques" → Les marques à 20k€/mois ont
+            proportionnellement plus à gagner de l'email que celles à 500k€.</span>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1rem;">
+        <div class="card-title">Désirs cachés → Angles de rêve</div>
+        <div class="topic-item">
+          <span class="topic-pain">Désir</span>
+          <span class="topic-angle">"Avoir un revenu prévisible sans dépendre des Ads" → Angle : "Voici à quoi ressemble
+            un mois email sans aucune campagne payante."</span>
+        </div>
+        <div class="topic-item">
+          <span class="topic-pain">Désir</span>
+          <span class="topic-angle">"Construire une vraie relation avec mes clients" → Angle : "L'email n'est pas un
+            canal de vente. C'est ton seul canal de possession directe."</span>
+        </div>
+        <div class="topic-item">
+          <span class="topic-pain">Désir</span>
+          <span class="topic-angle">"Travailler moins en gagnant plus" → Angle : "Un système de flows bien construit
+            génère du CA à 3h du matin. C'est ça, un actif digital."</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTIE 7 : PROFILS -->
+    <section id="profils" class="section">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <span class="section-title">Optimisation des profils</span>
+      </div>
+
+      <div class="profile-block">
+        <div class="profile-header">Instagram</div>
+        <div class="profile-content">
+          <div class="profile-row">
+            <span class="profile-key">Nom</span>
+            <span class="profile-val">[Prénom Nom] · Email Retention</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Titre</span>
+            <span class="profile-val">Je construis des systèmes email qui récupèrent le cash que les Ads ne capturent
+              pas.</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Bio</span>
+            <span class="profile-val">Klaviyo · Skincare DTC · Méthode REP<br>Flows · Segmentation · Délivrabilité<br>→
+              Audit gratuit en DM</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Lien</span>
+            <span class="profile-val">Page d'audit ou Calendly</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-block">
+        <div class="profile-header">X (Twitter)</div>
+        <div class="profile-content">
+          <div class="profile-row">
+            <span class="profile-key">Nom</span>
+            <span class="profile-val">[Prénom] · Email Systems</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Bio</span>
+            <span class="profile-val">Je récupère les revenus que les marques skincare laissent dans leur base Klaviyo.
+              Fondateur DTC → délivrabilité, segmentation, flows. Pas de bullshit.</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Épinglé</span>
+            <span class="profile-val">Ton thread le plus fort (Breakdown ou Démolition). C'est ta vitrine.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-block">
+        <div class="profile-header">YouTube</div>
+        <div class="profile-content">
+          <div class="profile-row">
+            <span class="profile-key">Titre canal</span>
+            <span class="profile-val">[Prénom] — Email Skincare DTC</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Description</span>
+            <span class="profile-val">J'analyse et construis des systèmes email pour les marques skincare DTC
+              francophones. Klaviyo, délivrabilité, segmentation, flows de rétention. Chaque vidéo = un audit ou un
+              framework directement applicable.</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">CTA</span>
+            <span class="profile-val">Audit gratuit de ta stratégie email en lien.</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Bannière</span>
+            <span class="profile-val">Fond blanc. 1 ligne : "Ton email marketing génère-t-il déjà 20% de ton CA ?"
+              Typographie propre, aucune image de stock.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-block">
+        <div class="profile-header">TikTok (si recyclage seulement)</div>
+        <div class="profile-content">
+          <div class="profile-row">
+            <span class="profile-key">Bio</span>
+            <span class="profile-val">Email systems pour marques skincare · Klaviyo · Méthode REP · Audit gratuit en
+              lien</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Note</span>
+            <span class="profile-val">Ne crée pas de contenu natif TikTok. Recycle tes Reels Instagram uniquement si tu
+              as déjà une cadence solide sur les autres plateformes.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTIE 8 : RECOMMANDATIONS -->
+    <section id="reco" class="section">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <span class="section-title">Recommandations finales ultra concrètes</span>
+      </div>
+
+      <div class="final-reco">
+        <p><strong>Semaine 1 :</strong> Optimise tous tes profils (Instagram, X, YouTube) avec les descriptions
+          ci-dessus. Publie ton premier post LinkedIn "Démolition" et ton premier thread X. Lance tes Stories Instagram
+          pour montrer ton process.</p>
+      </div>
+      <div class="final-reco">
+        <p><strong>Semaine 2–4 :</strong> Publie 5 posts LinkedIn/semaine. 4 posts Instagram/semaine. 1–2 tweets/jour +
+          1 thread. Recycle systématiquement chaque idée forte en 4 formats. Ne crée pas de nouveau contenu tant que
+          l'idée précédente n'est pas épuisée.</p>
+      </div>
+      <div class="final-reco">
+        <p><strong>Mois 1 — L'audit gratuit est ton arme principale.</strong> Propose publiquement 3 audits gratuits en
+          échange d'un témoignage ou d'une autorisation d'analyser. C'est ta preuve. Publie l'analyse (anonymisée si
+          besoin) en post LinkedIn et en vidéo YouTube. Un seul audit bien documenté vaut 10 témoignages clients.</p>
+      </div>
+      <div class="final-reco">
+        <p><strong>Ton angle ne change jamais.</strong> "Tu perds déjà de l'argent → je le récupère." Chaque post,
+          chaque vidéo, chaque tweet doit pouvoir se rattacher à cette phrase. Si ce n'est pas le cas, ne publie pas.
+        </p>
+      </div>
+      <div class="final-reco">
+        <p><strong>TikTok :</strong> Non. Sauf si tu as déjà une cadence solide partout ailleurs et 30 minutes de trop
+          chaque semaine. Ton ICP ne convertit pas là. Ce n'est pas une question de visibilité, c'est une question de
+          contexte décisionnel.</p>
+      </div>
+      <div class="final-reco">
+        <p><strong>YouTube :</strong> Démarre à mois 2–3, pas avant. Prépare 2–3 vidéos en avance pour ne pas rater la
+          cadence au démarrage. Ton premier sujet : "Pourquoi ta délivrabilité Klaviyo détruit tes résultats email" —
+          c'est le sujet le plus cherché, le moins bien traité en français.</p>
+      </div>
+      <div class="final-reco">
+        <p><strong>Ta différenciation esthétique :</strong> Schémas à la main. Fond blanc. Caméra fixe sans montage
+          complexe. C'est le bon choix. Dans un océan de contenus surchargés, ta sobriété sera identifiable. Ne la
+          compromets pas.</p>
+      </div>
+      <div class="final-reco">
+        <p><strong>Ce qui te différencie réellement de tous tes concurrents :</strong> Tu parles uniquement de skincare
+          DTC francophone. Pas d'e-com généraliste, pas de "toutes industries". Cette hyper-niche est ta moat. Chaque
+          fondateur skincare qui te voit se dit "il s'adresse à moi". C'est gagné avant même le premier message.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    function show(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      const idx = ['marche', 'position', 'formats', 'exemples', 'cal', 'sujets', 'profils', 'reco'].indexOf(id);
+      document.querySelectorAll('.nav-btn')[idx].classList.add('active');
+      const a = 1
+    }
+  </script>
+</body>
+
+</html>
